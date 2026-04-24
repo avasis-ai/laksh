@@ -3,6 +3,17 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-ede8df.svg)](LICENSE)
 [![Open source](https://img.shields.io/badge/open-source-MIT-7fb069.svg)](https://github.com/avasis-ai/laksh)
 
+```
+ _      _   _  _____ _  _ 
+| |    /_\ | |/ / __| || |
+| |__ / _ \| ' <\__ \ __ |
+|____/_/ \_\_|\_\___/_||_|
+```
+
+**Motion promo** (regenerate locally with `scripts/render-website-promo.py`; uses Pillow + **ffmpeg** `palettegen` / `paletteuse` for GIF, `libx264` for MP4):
+
+![Laksh website motion promo](website/media/laksh-promo.gif)
+
 A native macOS app for controlling multiple CLI coding agents side-by-side — a minimal, local-first SwiftUI workspace.
 
 Instead of a server + web dashboard + daemon, Laksh is a single Mac app that discovers agent CLIs on your `PATH` and spawns each one in a real PTY. No accounts, no backend, no database.
@@ -10,7 +21,7 @@ Instead of a server + web dashboard + daemon, Laksh is a single Mac app that dis
 **Repository:** [github.com/avasis-ai/laksh](https://github.com/avasis-ai/laksh)  
 **Marketing site:** static files in [`website/`](website/) (Claude-design document IA + tokens).  
 **Promo media:** `python3 -m venv .venv && .venv/bin/pip install pillow` once, then  
-`.venv/bin/python scripts/render-website-promo.py` (**ffmpeg** on PATH) refreshes `website/media/laksh-promo.{gif,mp4,png}`.
+`.venv/bin/python scripts/render-website-promo.py` (**ffmpeg** on PATH) refreshes `website/media/laksh-promo.{gif,mp4,png}` (720×406, 2× supersampled frames + 256-color Floyd–Steinberg GIF, CRF 18 MP4).
 
 **Live site (after you enable Pages / connect Vercel):**
 
