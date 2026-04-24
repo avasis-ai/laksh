@@ -1,0 +1,10 @@
+.build/
+build/
+.swiftpm/
+*.xcodeproj/
+.DS_Store
+Package.resolved
+.openclaw-workspace/
+scripts/openclaw-loop.log
+scripts/openclaw-loop.pid
+*.bak

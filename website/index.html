@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Laksh is a native macOS app for CLI agents — Kanban, SwiftTerm terminals, machine scan, and document-first marketing built with the avasis-ai Claude-design framework."
+    />
+    <title>Laksh — macOS control room for CLI agents</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#080808" />
+    <meta property="og:title" content="Laksh — macOS control room for CLI agents" />
+    <meta
+      property="og:description"
+      content="Native SwiftUI + SwiftTerm. Kanban for power state. Lightweight machine scan. Built with the Claude-design reverse-engineering framework (community tokens + IA)."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/avasis-ai/laksh/main/website/media/laksh-promo-poster.png"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080808'/%3E%3Cpath d='M8 22V10h3l4.5 7.2L20 10h3v12h-2.6V14.5L16 21h-1.2L10.6 14.5V22z' fill='%23EDE8DF'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap inner">
+        <a class="brand" href="#top" id="top" aria-label="Laksh home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6 18V6h2.5l3.75 6L16.25 6H19v12h-2.2V9.2L13 15.5h-1L8.2 9.2V18z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <span>Laksh</span>
+        </a>
+        <div class="header-right">
+          <div class="oss-hub" aria-label="GitHub repositories">
+            <a
+              class="gh-btn"
+              href="https://github.com/avasis-ai/laksh"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" width="16" height="16" aria-hidden="true"
+                ><path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.195-22.23-5.378-22.23-24.283 0-5.378 1.94-9.697 5.014-13.1-.485-1.195-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.843.485 13.038 3.155 3.404 5.014 7.722 5.014 13.1 0 18.905-11.404 23.088-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+              /></svg>
+              Laksh
+            </a>
+            <a
+              class="gh-btn"
+              href="https://github.com/avasis-ai/claude-design-reverse-engineering"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" width="16" height="16" aria-hidden="true"
+                ><path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.195-22.23-5.378-22.23-24.283 0-5.378 1.94-9.697 5.014-13.1-.485-1.195-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.843.485 13.038 3.155 3.404 5.014 7.722 5.014 13.1 0 18.905-11.404 23.088-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+              /></svg>
+              Claude-design
+            </a>
+          </div>
+          <nav class="nav" aria-label="Primary">
+            <a href="#answer">Overview</a>
+            <a href="#promo">Motion</a>
+            <a href="#problem">Problem</a>
+            <a href="#flow">Flow</a>
+            <a href="#compare">Compare</a>
+            <a href="#features">Features</a>
+            <a href="#mac">Mac</a>
+            <a href="#specs">Specs</a>
+            <a class="pill" href="#framework">Framework</a>
+            <a class="pill" href="#build">Build</a>
+            <a href="#opensource">Source</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <p class="ghost-step">02 — Answer first</p>
+          <h1 id="hero-title">A native macOS room for CLI agents and shells.</h1>
+          <p class="hero-lead">
+            Laksh keeps Kanban, terminals, and a grounded view of what is running on your machine in
+            one quiet workspace — so you spend less time tab-hopping and more time shipping.
+          </p>
+          <div class="badge-row" aria-label="Platform">
+            <span class="badge">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                />
+              </svg>
+              macOS only
+            </span>
+            <span class="badge">SwiftUI · SwiftTerm · Local-first</span>
+            <span class="badge">Page IA: Claude-design framework</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/avasis-ai/laksh" rel="noopener noreferrer" target="_blank"
+              >Star Laksh on GitHub</a
+            >
+            <a class="btn btn-secondary" href="#build">Build from source</a>
+            <a class="btn btn-quiet" href="#promo">Watch the loop</a>
+            <a class="btn btn-quiet" href="#framework">Claude-design docs</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="answer-strip" id="answer" aria-labelledby="answer-kicker">
+        <div class="wrap">
+          <div class="answer-card reveal">
+            <p class="answer-kicker" id="answer-kicker">What you get in one glance</p>
+            <p>
+              <strong>Laksh is a local-first macOS app</strong> that ties tasks, agent sessions, and
+              plain shells to a Kanban board, then opens the real terminal with a double-tap. A
+              lightweight scan shows which CLI agents are alive on your Mac — with guardrails so you
+              do not mistake helpers for top-level processes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="takeaways" aria-label="Key takeaways">
+        <div class="wrap takeaway-grid">
+          <div class="takeaway reveal">
+            <h3>Insight</h3>
+            <p>Power state should be visible: idle, running, done — not buried in window titles.</p>
+          </div>
+          <div class="takeaway reveal">
+            <h3>Evidence</h3>
+            <p>SwiftTerm gives correct PTY + keyboard routing; Laksh focuses on orchestration, not reinventing VT100.</p>
+          </div>
+          <div class="takeaway reveal">
+            <h3>Action</h3>
+            <p>Clone, <code>swift build</code>, run <code>scripts/build-app.sh</code>, open the bundle — you are in.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="promo" class="promo-section" aria-labelledby="promo-title">
+        <div class="wrap">
+          <p class="ghost-step">02b — Motion chunk (GIF)</p>
+          <header class="section-head">
+            <h2 id="promo-title">Animated preview</h2>
+            <p class="doc-prose">
+              A lightweight loop generated from the repo (no screen recording required). It follows
+              the same document-first rhythm as the page: one idea per beat, calm contrast, monospace
+              labels. Regenerate with <code>python3 scripts/render-website-promo.py</code> after UI shifts.
+            </p>
+          </header>
+          <figure class="promo-frame reveal">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="media/laksh-promo-poster.png" />
+              <img
+                src="media/laksh-promo.gif"
+                width="720"
+                height="400"
+                alt="Stylized Laksh window: sidebar, three Kanban columns with a running-state pulse, and a terminal strip."
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <figcaption>
+              <code>website/media/laksh-promo.gif</code> · poster for reduced motion:
+              <code>laksh-promo-poster.png</code>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-label="Product preview">
+        <div class="wrap">
+          <div class="hero-art reveal" role="img" aria-label="Stylized preview of Laksh">
+            <div class="hero-art-header">
+              <span class="traffic" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span>Laksh — Mission control</span>
+            </div>
+            <div class="hero-art-body">
+              <aside class="mock-sidebar">
+                <p class="mock-label">Agents &amp; shells</p>
+                <div class="mock-list">
+                  <div class="mock-pill active"></div>
+                  <div class="mock-pill"></div>
+                  <div class="mock-pill"></div>
+                  <div class="mock-pill"></div>
+                </div>
+              </aside>
+              <div class="mock-main">
+                <div class="mock-kanban">
+                  <div class="mock-col">
+                    <h3>Idle</h3>
+                    <div class="mock-card"></div>
+                    <div class="mock-card"></div>
+                  </div>
+                  <div class="mock-col">
+                    <h3>Running</h3>
+                    <div class="mock-card running"></div>
+                    <div class="mock-card running"></div>
+                  </div>
+                  <div class="mock-col">
+                    <h3>Done</h3>
+                    <div class="mock-card"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-rule" />
+
+      <section id="problem" aria-labelledby="problem-title">
+        <div class="wrap">
+          <p class="ghost-step">03 — Chunking</p>
+          <header class="section-head">
+            <h2 id="problem-title">The friction Laksh targets</h2>
+            <p class="doc-prose">
+              Agent work spreads across browser dashboards, terminal tabs, and ad-hoc notes. Context
+              gets re-explained every time you switch surfaces. Laksh narrows the loop: one native
+              window, project-bound sessions, and a board that mirrors how you think about power and
+              attention on your Mac.
+            </p>
+          </header>
+        </div>
+      </section>
+
+      <section id="flow" aria-labelledby="flow-title">
+        <div class="wrap two-col">
+          <div class="reveal">
+            <p class="ghost-step">04 — Signposted flow</p>
+            <header class="section-head" style="margin-bottom: 0">
+              <h2 id="flow-title">How a session moves</h2>
+              <p class="doc-prose">First you orient, then you act, then you release resources deliberately.</p>
+            </header>
+            <ol class="steps">
+              <li>Open Laksh and pick a workspace path you already trust.</li>
+              <li>Scan external agents when you need ground truth about running CLIs.</li>
+              <li>Spawn a shell or agent task; double-tap a card to jump into its terminal.</li>
+              <li>Drag items to Done when you want the machine to go quiet.</li>
+            </ol>
+          </div>
+          <div class="reveal">
+            <div class="terminal-block" role="region" aria-label="Example build commands">
+              <div><span class="prompt">~/ActiveProjects/laksh</span> <span class="cmd">swift build</span></div>
+              <div style="margin-top: 10px; opacity: 0.75">Build complete.</div>
+              <div style="margin-top: 14px">
+                <span class="prompt">~/ActiveProjects/laksh</span>
+                <span class="cmd">bash scripts/build-app.sh</span>
+              </div>
+              <div style="margin-top: 10px; opacity: 0.75">Built build/Laksh.app</div>
+              <div style="margin-top: 10px; opacity: 0.55">open build/Laksh.app</div>
+            </div>
+            <p style="margin-top: 14px; font-size: var(--cd-step--1); color: var(--cd-text-muted)">
+              Laksh sits beside your existing tools — it does not replace your shell muscle memory.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="compare" aria-labelledby="compare-title">
+        <div class="wrap">
+          <p class="ghost-step">05 — Comparison template</p>
+          <header class="section-head">
+            <h2 id="compare-title">Laksh vs the usual surfaces</h2>
+            <p class="doc-prose">
+              Tables keep cells short so you can scan tradeoffs quickly — the same discipline used in
+              strong long-form assistant answers.
+            </p>
+          </header>
+          <div class="table-wrap reveal">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th scope="col">Dimension</th>
+                  <th scope="col">Laksh (macOS)</th>
+                  <th scope="col">Terminal tabs</th>
+                  <th scope="col">Web dashboards</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Context</th>
+                  <td>Project paths, tasks, and sessions stay linked in one window.</td>
+                  <td>Great per shell; easy to lose shared state across tabs.</td>
+                  <td>Often account-centric; may not mirror your local tree.</td>
+                </tr>
+                <tr>
+                  <th scope="row">UI model</th>
+                  <td>Native SwiftUI + AppKit — standard Mac patterns.</td>
+                  <td>Text-first; weak at board-level overviews.</td>
+                  <td>Browser tabs — another context switch away from files.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Agents</th>
+                  <td>Kanban + terminal for CLI agents you choose to run.</td>
+                  <td>Infinitely flexible; you glue everything yourself.</td>
+                  <td>Fast to try; cloud routing depends on vendor defaults.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Privacy</th>
+                  <td>Local-first; network is what your agents do in shells.</td>
+                  <td>Stays on machine; you control outbound calls.</td>
+                  <td>Check vendor policies for prompts and logs.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Best for</th>
+                  <td>Daily driver when you want native UX + honest power state.</td>
+                  <td>Deep debugging, CI, raw control.</td>
+                  <td>Demos or orgs that mandate web clients.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" aria-labelledby="features-title">
+        <div class="wrap">
+          <p class="ghost-step">06 — Pillars</p>
+          <header class="section-head">
+            <h2 id="features-title">What ships today</h2>
+            <p>Each card is one idea — easy to scan, easy to disagree with precisely.</p>
+          </header>
+          <div class="feature-grid">
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="4" width="7" height="7" rx="1.5" />
+                  <rect x="14" y="4" width="7" height="7" rx="1.5" />
+                  <rect x="3" y="13" width="7" height="7" rx="1.5" />
+                  <rect x="14" y="13" width="7" height="7" rx="1.5" />
+                </svg>
+              </div>
+              <h3>Kanban for tasks &amp; sessions</h3>
+              <p>Idle, Running, and Done mirror attention and CPU — not generic columns.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="5" width="16" height="14" rx="2" />
+                  <path d="M7 9h10M7 12h6" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>SwiftTerm terminals</h3>
+              <p>PTY-backed shells with correct keyboard paths for both native and agent sessions.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="11" cy="11" r="6" />
+                  <path d="M20 20l-3-3" stroke-linecap="round" />
+                  <path d="M11 8v6l3 1.5" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Machine scan</h3>
+              <p>Summaries for external CLI agents with filtering to avoid killing helpers by mistake.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 3v18M5 9h14M5 15h8" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Drag across columns</h3>
+              <p>Move work to Done when you want the machine quiet — gesture matches intent.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 19V5M8 19V9M12 19v-6M16 19V7M20 19v-4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Lightweight perf readout</h3>
+              <p>CPU and memory sampled gently — monitoring should not dominate the machine.</p>
+            </article>
+            <article class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke-linejoin="round" />
+                  <path d="M12 22V12" stroke-linecap="round" />
+                  <path d="M3 7l9 5 9-5" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3>Persisted tasks</h3>
+              <p>Work survives relaunch; running items reset to idle until you resume deliberately.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="mac" aria-labelledby="mac-title">
+        <div class="wrap">
+          <p class="ghost-step">07 — macOS scope</p>
+          <header class="section-head">
+            <h2 id="mac-title">Built for macOS on purpose</h2>
+            <p class="doc-prose">
+              Windowing, responder chains, and terminal embedding are first-class on the Mac. A
+              Windows or Linux port would be a different product — not a checkbox release.
+            </p>
+          </header>
+          <dl class="req-grid">
+            <div class="req-item reveal">
+              <dt>Operating system</dt>
+              <dd>macOS 14 Sonoma or later recommended for current SwiftUI stacks.</dd>
+            </div>
+            <div class="req-item reveal">
+              <dt>Hardware</dt>
+              <dd>Apple Silicon or Intel — tuned for everyday developer laptops.</dd>
+            </div>
+            <div class="req-item reveal">
+              <dt>Permissions</dt>
+              <dd>Process scanning uses local APIs. Full shell fidelity may require relaxing sandboxing (see SwiftTerm guidance).</dd>
+            </div>
+            <div class="req-item reveal">
+              <dt>Distribution</dt>
+              <dd>Today: build from source. Signed and notarized builds when you are ready to ship.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="specs" aria-labelledby="specs-title">
+        <div class="wrap">
+          <p class="ghost-step">08 — Progressive disclosure</p>
+          <header class="section-head">
+            <h2 id="specs-title">Deeper specs (optional)</h2>
+            <p>Open only the topics you care about — same pattern as layered assistant answers.</p>
+          </header>
+          <details>
+            <summary>Stack and dependencies</summary>
+            <p>
+              SwiftPM project with SwiftTerm for terminal emulation. SwiftUI for layout, AppKit bridges
+              for first-responder-safe terminal hosting.
+            </p>
+          </details>
+          <details>
+            <summary>License and open source</summary>
+            <p>
+              Laksh is released under the <strong>MIT License</strong> (see
+              <code>LICENSE</code> in the repository). Contributions welcome under the same terms.
+            </p>
+          </details>
+          <details>
+            <summary>Privacy and networking</summary>
+            <p>
+              This marketing site is static. The app is local-first; any network use comes from the
+              agents and commands you run inside terminals.
+            </p>
+          </details>
+          <details>
+            <summary>Why not a custom Metal terminal?</summary>
+            <p>
+              PTY correctness, scrollback, composition, and keyboard routing are production-grade problems.
+              SwiftTerm solves them so Laksh can focus on orchestration and inspection UX.
+            </p>
+          </details>
+          <details>
+            <summary>Permissions checklist (developer FAQ)</summary>
+            <p>
+              Expect to reason about Full Disk Access only if you add features that require it. For the
+              current open-source build, follow macOS signing and sandbox notes in your own distribution
+              pipeline.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="oss-band" id="framework" aria-labelledby="framework-title">
+        <div class="wrap">
+          <p class="ghost-step">09 — Framework</p>
+          <h2 id="framework-title">Claude-design reverse engineering (community OSS)</h2>
+          <p class="lead">
+            This page applies a <strong>document-first information architecture</strong> distilled from
+            public discussions of strong assistant outputs: answer-first blocks, chunked sections,
+            comparison tables, signposted flows, and progressive disclosure.
+          </p>
+          <div class="callout reveal">
+            <h3>Repository</h3>
+            <p>
+              The framework, tokens, checklists, and contribution rules live under
+              <strong>avasis-ai</strong> as
+              <a href="https://github.com/avasis-ai/claude-design-reverse-engineering"
+                >claude-design-reverse-engineering</a
+              >. It explicitly describes itself as <strong>community reverse engineering of observable UX patterns</strong>, not proprietary source extraction.
+            </p>
+          </div>
+          <div class="cta-row" style="margin-top: 16px">
+            <a class="btn btn-primary" href="https://github.com/avasis-ai/claude-design-reverse-engineering"
+              >Open the OSS repo</a
+            >
+            <a class="btn btn-secondary" href="https://github.com/avasis-ai/claude-design-reverse-engineering/blob/main/docs/output-design-framework.md"
+              >Read the framework doc</a
+            >
+          </div>
+          <p class="key-recap">
+            <strong>Key takeaway:</strong> tokens live in <code>packages/tokens/tokens.css</code>; this site
+            vendors the same variables as <code>cd-tokens.css</code> so Laksh stays self-contained.
+          </p>
+        </div>
+      </section>
+
+      <section class="cta-band" id="build" aria-labelledby="build-title">
+        <div class="wrap">
+          <p class="ghost-step">10 — Recap and build</p>
+          <h2 id="build-title">Ship it on your machine</h2>
+          <p>
+            From the <code>laksh</code> directory: compile, bundle, launch. That is the whole distribution
+            story for contributors today.
+          </p>
+          <div class="terminal-block reveal" style="text-align: left; max-width: 540px; margin: 0 auto 22px">
+            <div><span class="prompt">laksh</span> <span class="cmd">swift build</span></div>
+            <div style="margin-top: 12px">
+              <span class="prompt">laksh</span> <span class="cmd">bash scripts/build-app.sh</span>
+            </div>
+            <div style="margin-top: 12px; opacity: 0.55">open build/Laksh.app</div>
+          </div>
+          <div class="cta-row" style="justify-content: center">
+            <a class="btn btn-primary" href="https://github.com/avasis-ai/laksh" rel="noopener noreferrer" target="_blank"
+              >View Laksh on GitHub</a
+            >
+            <a class="btn btn-secondary" href="#top">Back to top</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="opensource" class="oss-open" aria-labelledby="oss-title">
+        <div class="wrap">
+          <p class="ghost-step">10b — Source</p>
+          <h2 id="oss-title">Open source under avasis-ai</h2>
+          <p class="lead">
+            Laksh and the Claude-design framework are public MIT projects. Fork, audit, and ship your
+            own builds — no vendor lock-in for this site or the app shell.
+          </p>
+          <div class="oss-cards">
+            <a
+              class="oss-card"
+              href="https://github.com/avasis-ai/laksh"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <h3>Laksh</h3>
+              <p>Native macOS SwiftPM app — agents, Kanban, SwiftTerm, machine scan.</p>
+              <div class="mono">github.com/avasis-ai/laksh</div>
+            </a>
+            <a
+              class="oss-card"
+              href="https://github.com/avasis-ai/claude-design-reverse-engineering"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <h3>Claude-design reverse engineering</h3>
+              <p>Community framework, tokens, checklists — how to write scannable long-form surfaces.</p>
+              <div class="mono">github.com/avasis-ai/claude-design-reverse-engineering</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" aria-labelledby="faq-title">
+        <div class="wrap">
+          <p class="ghost-step">11 — FAQ</p>
+          <header class="section-head">
+            <h2 id="faq-title">Developer questions</h2>
+            <p>Short answers — swap in your exact policies when you publish binaries.</p>
+          </header>
+          <details>
+            <summary>How does Laksh treat secrets and .env files?</summary>
+            <p>
+              Laksh does not exfiltrate shell contents. Whatever your agents print or upload is still
+              governed by those tools — treat sessions like any other terminal.
+            </p>
+          </details>
+          <details>
+            <summary>Can I bring my own models or gateways?</summary>
+            <p>
+              Laksh orchestrates local processes. If your CLI agent supports a gateway or local model,
+              run it the same way you would in Terminal.app.
+            </p>
+          </details>
+          <details>
+            <summary>Do I have to leave tmux or iTerm behind?</summary>
+            <p>
+              No. Laksh is additive: use it when you want a board and inspection surface, keep your
+              existing shell setup for everything else.
+            </p>
+          </details>
+          <details>
+            <summary>Which macOS permissions matter?</summary>
+            <p>
+              Start with defaults. Add permissions only when a feature truly needs them, and document
+              why in your fork’s readme before you ship to others.
+            </p>
+          </details>
+          <details>
+            <summary>How are destructive agent actions reviewed?</summary>
+            <p>
+              Laksh does not auto-approve file mutations. Use your agent’s native safeguards, dry-run
+              flags, and code review — the UI is control, not autopilot.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <strong style="color: var(--cd-text)">Laksh</strong>
+          — macOS control room for CLI agents.
+        </div>
+        <div class="footer-links">
+          <a href="#top">Top</a>
+          <a href="#promo">GIF</a>
+          <a href="#compare">Compare</a>
+          <a href="#opensource">Source</a>
+          <a href="https://github.com/avasis-ai/laksh" rel="noopener noreferrer" target="_blank">Laksh</a>
+          <a href="https://github.com/avasis-ai/claude-design-reverse-engineering" rel="noopener noreferrer" target="_blank"
+            >Claude-design</a
+          >
+        </div>
+        <div><span id="year"></span></div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

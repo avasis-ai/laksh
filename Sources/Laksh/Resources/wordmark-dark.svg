@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 32" width="140" height="32">
+  <rect width="140" height="32" fill="#080808"/>
+  <g fill="none" stroke="#EDE8DF" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"
+     transform="translate(4 4)">
+    <path d="M4 7 V4 H7"/>
+    <path d="M17 4 H20 V7"/>
+    <path d="M20 17 V20 H17"/>
+    <path d="M7 20 H4 V17"/>
+    <path d="M12 6 V10"/>
+    <path d="M12 14 V18"/>
+    <path d="M6 12 H10"/>
+    <path d="M14 12 H18"/>
+    <circle cx="13" cy="13" r="1.1"/>
+  </g>
+  <text x="36" y="21" fill="#EDE8DF"
+        font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+        font-size="14" font-weight="500" letter-spacing="2.4">laksh</text>
+</svg>

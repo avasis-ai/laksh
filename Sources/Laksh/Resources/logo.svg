@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+     stroke="#EDE8DF" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M4 7 V4 H7"/>
+  <path d="M17 4 H20 V7"/>
+  <path d="M20 17 V20 H17"/>
+  <path d="M7 20 H4 V17"/>
+  <path d="M12 6 V10"/>
+  <path d="M12 14 V18"/>
+  <path d="M6 12 H10"/>
+  <path d="M14 12 H18"/>
+  <circle cx="13" cy="13" r="1.1"/>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect x="0" y="0" width="512" height="512" rx="112" ry="112" fill="#080808"/>
+  <path d="M112 1 H400 A111 111 0 0 1 511 112"
+        fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <g transform="translate(116 116)" fill="none" stroke="#EDE8DF"
+     stroke-width="6" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M44 84 V44 H84"/>
+    <path d="M196 44 H236 V84"/>
+    <path d="M236 196 V236 H196"/>
+    <path d="M84 236 H44 V196"/>
+    <path d="M140 64 V108"/>
+    <path d="M140 172 V216"/>
+    <path d="M64 140 H108"/>
+    <path d="M172 140 H216"/>
+    <circle cx="156" cy="156" r="10" fill="#EDE8DF"/>
+  </g>
+  <text x="448" y="472" text-anchor="end"
+        font-family="ui-monospace, 'SF Mono', Menlo, monospace"
+        font-size="22" font-weight="500"
+        fill="#EDE8DF" fill-opacity="0.06"
+        letter-spacing="1.5">01</text>
+</svg>

@@ -1,0 +1,36 @@
+/**
+ * Vendored from `claude-design-reverse-engineering/packages/tokens/tokens.css`
+ * (https://github.com/avasis-ai/claude-design-reverse-engineering)
+ * Duplicate keeps Laksh’s static site self-contained when cloned alone.
+ */
+:root {
+  --cd-bg: #080808;
+  --cd-bg-elevated: #0c0c0c;
+  --cd-text: #ede8df;
+  --cd-text-muted: rgba(237, 232, 223, 0.58);
+  --cd-text-dim: rgba(237, 232, 223, 0.38);
+  --cd-line: rgba(255, 255, 255, 0.08);
+  --cd-line-strong: rgba(237, 232, 223, 0.16);
+  --cd-surface: rgba(255, 255, 255, 0.035);
+  --cd-surface-hover: rgba(255, 255, 255, 0.055);
+  --cd-inset: rgba(255, 255, 255, 0.06);
+  --cd-accent: #7fb069;
+  --cd-accent-soft: rgba(127, 176, 105, 0.18);
+  --cd-ghost: rgba(237, 232, 223, 0.08);
+  --cd-radius-lg: 14px;
+  --cd-radius-md: 12px;
+  --cd-radius-sm: 10px;
+  --cd-shadow-elevated: 0 28px 90px rgba(0, 0, 0, 0.45);
+  --cd-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Helvetica Neue", sans-serif;
+  --cd-font-mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  --cd-step--1: 0.75rem;
+  --cd-step-0: 0.9375rem;
+  --cd-step-1: 1.0625rem;
+  --cd-step-2: 1.1875rem;
+  --cd-step-3: 1.375rem;
+  --cd-step-4: 1.75rem;
+  --cd-step-5: clamp(2rem, 4vw, 2.65rem);
+  --cd-prose-width: 65ch;
+  --cd-max-width: 1120px;
+}
