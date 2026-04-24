@@ -9,10 +9,13 @@ Instead of a server + web dashboard + daemon, Laksh is a single Mac app that dis
 
 **Repository:** [github.com/avasis-ai/laksh](https://github.com/avasis-ai/laksh)  
 **Marketing site:** static files in [`website/`](website/) (Claude-design document IA + tokens).  
-**Promo GIF:** `python3 -m venv .venv && .venv/bin/pip install pillow` once, then  
-`.venv/bin/python scripts/render-website-promo.py` (needs **ffmpeg** on PATH) to refresh `website/media/laksh-promo.gif` and `laksh-promo-poster.png`. The ad uses layered motion (springs, pulse wave, parallax) informed by an OpenClaw local agent pass.
+**Promo media:** `python3 -m venv .venv && .venv/bin/pip install pillow` once, then  
+`.venv/bin/python scripts/render-website-promo.py` (**ffmpeg** on PATH) refreshes `website/media/laksh-promo.{gif,mp4,png}`.
 
-**GitHub Pages:** enable *Settings → Pages → GitHub Actions*, then pushes to `main` that touch `website/**` deploy via [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+**Live site (after you enable Pages / connect Vercel):**
+
+- **GitHub Pages:** [https://avasis-ai.github.io/laksh/](https://avasis-ai.github.io/laksh/) — enable *Settings → Pages → Source: GitHub Actions*, then push `main` (see [`.github/workflows/pages.yml`](.github/workflows/pages.yml)). Includes `website/.nojekyll` so assets are not processed by Jekyll.
+- **Vercel:** import this repo; `vercel.json` sets `outputDirectory` to `website` (no build). Or set **Root Directory** to `website` in the Vercel project UI.
 
 ## What it does today (v0.1)
 

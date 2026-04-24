@@ -32,7 +32,7 @@ except ImportError:
     raise SystemExit(1)
 
 # 16:9; fewer frames + coarser glow steps keep GIF lightweight for GitHub Pages.
-W, H = 720, 405
+W, H = 720, 406  # even height for H.264 yuv420p
 FRAMES = 36
 FPS = 9
 
@@ -289,6 +289,7 @@ def main() -> int:
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     media_dir = os.path.join(root, "website", "media")
     out_gif = os.path.join(media_dir, "laksh-promo.gif")
+    out_mp4 = os.path.join(media_dir, "laksh-promo.mp4")
     out_poster = os.path.join(media_dir, "laksh-promo-poster.png")
     os.makedirs(media_dir, exist_ok=True)
 
@@ -354,12 +355,39 @@ def main() -> int:
             ],
             check=True,
         )
+
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-hide_banner",
+                "-loglevel",
+                "error",
+                "-framerate",
+                str(FPS),
+                "-i",
+                pattern,
+                "-c:v",
+                "libx264",
+                "-pix_fmt",
+                "yuv420p",
+                "-crf",
+                "26",
+                "-preset",
+                "medium",
+                "-movflags",
+                "+faststart",
+                out_mp4,
+            ],
+            check=True,
+            cwd=tmp,
+        )
     finally:
         for name in os.listdir(tmp):
             os.unlink(os.path.join(tmp, name))
         os.rmdir(tmp)
 
-    print(out_gif, file=sys.stderr)
+    print(out_gif, out_mp4, sep="\n", file=sys.stderr)
     return 0
 
 

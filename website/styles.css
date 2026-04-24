@@ -988,6 +988,35 @@ code {
   overflow: hidden;
 }
 
+.promo-stack {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.promo-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  background: #000;
+}
+
+.promo-static {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-video {
+    display: none;
+  }
+  .promo-static {
+    display: block;
+  }
+}
+
 .promo-frame img {
   display: block;
   width: 100%;

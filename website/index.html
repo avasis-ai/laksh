@@ -168,20 +168,40 @@
             </p>
           </header>
           <figure class="promo-frame reveal">
-            <picture>
-              <source media="(prefers-reduced-motion: reduce)" srcset="media/laksh-promo-poster.png" />
+            <div class="promo-stack">
+              <video
+                class="promo-video"
+                width="720"
+                height="406"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="media/laksh-promo-poster.png"
+                aria-label="Animated preview of the Laksh workspace mock."
+              >
+                <source src="media/laksh-promo.mp4" type="video/mp4" />
+                <img
+                  src="media/laksh-promo.gif"
+                  width="720"
+                  height="406"
+                  alt="Animated GIF fallback: Laksh workspace mock."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </video>
               <img
-                src="media/laksh-promo.gif"
-                width="640"
-                height="360"
-                alt="Stylized Laksh window: sidebar, three Kanban columns with a running-state pulse, and a terminal strip."
+                class="promo-static"
+                src="media/laksh-promo-poster.png"
+                width="720"
+                height="406"
+                alt="Static preview poster."
                 loading="lazy"
-                decoding="async"
               />
-            </picture>
+            </div>
             <figcaption>
-              <code>website/media/laksh-promo.gif</code> · poster for reduced motion:
-              <code>laksh-promo-poster.png</code>
+              <strong>MP4</strong> (preferred) · <strong>GIF</strong> fallback · <strong>PNG</strong> when reduced motion is on.
+              Files in <code>website/media/</code> — regenerate with <code>scripts/render-website-promo.py</code>.
             </figcaption>
           </figure>
         </div>
