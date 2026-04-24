@@ -161,9 +161,10 @@
           <header class="section-head">
             <h2 id="promo-title">Animated preview</h2>
             <p class="doc-prose">
-              A lightweight loop generated from the repo (no screen recording required). It follows
-              the same document-first rhythm as the page: one idea per beat, calm contrast, monospace
-              labels. Regenerate with <code>python3 scripts/render-website-promo.py</code> after UI shifts.
+              Built in-repo with <strong>Pillow</strong> + <strong>ffmpeg</strong> (no screen recording): parallax
+              particles, perspective grid, spring-eased cards, a sweeping accent pulse, and a typewriter
+              terminal strip — motion patterns riffing on an <strong>OpenClaw</strong> (GLM 5.1) creative pass.
+              Regenerate: <code>.venv/bin/python scripts/render-website-promo.py</code> (see README).
             </p>
           </header>
           <figure class="promo-frame reveal">
@@ -171,8 +172,8 @@
               <source media="(prefers-reduced-motion: reduce)" srcset="media/laksh-promo-poster.png" />
               <img
                 src="media/laksh-promo.gif"
-                width="720"
-                height="400"
+                width="640"
+                height="360"
                 alt="Stylized Laksh window: sidebar, three Kanban columns with a running-state pulse, and a terminal strip."
                 loading="lazy"
                 decoding="async"
